@@ -95,7 +95,8 @@ class LookupChannel(object):
         """
         # return objects in the same order as passed in here
         pk_type = self.model._meta.pk.to_python
-        ids = [pk_type(pk) for pk in ids]
+        # ids = [pk_type(pk) for pk in ids]
+        ids = [pk.id for pk in ids]
         things = self.model.objects.in_bulk(ids)
         return [things[aid] for aid in ids if aid in things]
 
